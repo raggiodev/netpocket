@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NetPocket</string>
+    <string name="title_activity_main">NetPocket</string>
+    <string name="package_name">dev.raggio.netpocket</string>
+    <string name="custom_url_scheme">dev.raggio.netpocket</string>
+</resources>
