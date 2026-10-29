@@ -130,19 +130,19 @@ export const Networks: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 max-w-4xl mx-auto pb-24 pt-2">
+    <div className="flex flex-col gap-3.5 w-full max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5 pb-24 overflow-x-hidden">
       {/* Header */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold text-fg flex items-center gap-2">
+        <h1 className="text-lg font-bold text-fg flex items-center gap-2">
           <span>{t.networks.title}</span>
         </h1>
-        <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted mt-0.5 leading-relaxed">
           {t.networks.subtitle}
         </p>
       </div>
 
       {/* Main Controls Card */}
-      <div className="flex flex-col gap-4 p-4 rounded-2xl bg-surface border border-line shadow-card">
+      <div className="flex flex-col gap-3 p-3 sm:p-4 rounded-2xl bg-surface border border-line shadow-card min-w-0 max-w-full overflow-hidden">
         {/* IPv4 Address Input */}
         <TextField
           label={t.networks.ipLabel}
@@ -238,10 +238,10 @@ export const Networks: React.FC = () => {
 
       {/* 32-Bit Binary X-Ray */}
       {ipBits && (
-        <div className="flex flex-col gap-2.5 p-4 rounded-2xl bg-surface border border-line">
-          <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-2.5 p-3 sm:p-4 rounded-2xl bg-surface border border-line min-w-0 max-w-full overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-1.5">
             <div className="flex items-center gap-2">
-              <Binary className="w-4 h-4 text-accent" />
+              <Binary className="w-4 h-4 text-accent shrink-0" />
               <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">
                 {t.networks.xray}
               </h2>
@@ -254,11 +254,11 @@ export const Networks: React.FC = () => {
           </div>
 
           {/* 32-bit Interactive Grid */}
-          <div className="p-3 rounded-xl bg-bg border border-line/80 font-mono text-xs sm:text-sm overflow-x-auto">
-            <div className="flex items-center justify-center gap-1 sm:gap-1.5 min-w-[280px]">
+          <div className="p-2.5 rounded-xl bg-bg border border-line/80 font-mono text-xs overflow-x-auto max-w-full">
+            <div className="flex items-center justify-center gap-1 sm:gap-1.5 min-w-[260px]">
               {[0, 1, 2, 3].map((octetIdx) => (
                 <React.Fragment key={octetIdx}>
-                  <div className="flex items-center gap-[2px] sm:gap-1">
+                  <div className="flex items-center gap-[2px]">
                     {[0, 1, 2, 3, 4, 5, 6, 7].map((bitIdx) => {
                       const absoluteBit = octetIdx * 8 + bitIdx;
                       const isNetworkBit = absoluteBit < cidr;
@@ -267,17 +267,16 @@ export const Networks: React.FC = () => {
                       return (
                         <div
                           key={bitIdx}
-                          className={`relative flex items-center justify-center w-6 h-7 sm:w-7 sm:h-8 rounded text-center font-bold transition-colors ${
-                            isNetworkBit
-                              ? 'bg-cyanbit/20 text-cyanbit border border-cyanbit/50'
-                              : 'bg-hostbit/15 text-hostbit border border-hostbit/40'
-                          }`}
+                          className={`relative flex items-center justify-center w-5 h-6 sm:w-6 sm:h-7 rounded text-center font-bold transition-colors ${isNetworkBit
+                            ? 'bg-cyanbit/20 text-cyanbit border border-cyanbit/50'
+                            : 'bg-hostbit/15 text-hostbit border border-hostbit/40'
+                            }`}
                         >
                           {ipBits[absoluteBit]}
                           {isBoundary && (
                             <span
                               title={`CIDR /${cidr}`}
-                              className="absolute -right-[3px] top-0 bottom-0 w-[2px] bg-accent z-10 shadow-glow"
+                              className="absolute -right-[2px] top-0 bottom-0 w-[2px] bg-accent z-10 shadow-glow"
                             />
                           )}
                         </div>
@@ -291,15 +290,15 @@ export const Networks: React.FC = () => {
           </div>
 
           {/* Binary X-Ray Legend */}
-          <div className="flex items-center justify-between text-[11px] font-mono px-1">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono px-1">
             <div className="flex items-center gap-1.5 text-cyanbit">
-              <span className="w-2.5 h-2.5 rounded bg-cyanbit/40 border border-cyanbit" />
+              <span className="w-2.5 h-2.5 rounded bg-cyanbit/40 border border-cyanbit shrink-0" />
               <span>
                 {t.networks.networkBits}: {cidr}
               </span>
             </div>
             <div className="flex items-center gap-1.5 text-hostbit">
-              <span className="w-2.5 h-2.5 rounded bg-hostbit/40 border border-hostbit" />
+              <span className="w-2.5 h-2.5 rounded bg-hostbit/40 border border-hostbit shrink-0" />
               <span>
                 {t.networks.hostBits}: {32 - cidr}
               </span>
@@ -310,13 +309,13 @@ export const Networks: React.FC = () => {
 
       {/* Tappable Output Cards (Subnet Calculation Results) */}
       {subnet && (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5 min-w-0 max-w-full">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-accent" />
+            <Layers className="w-4 h-4 text-accent shrink-0" />
             <span>{t.networks.title}</span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 min-w-0 max-w-full">
             {/* Network Address */}
             <CopyCard
               label={t.networks.results.network}
@@ -361,8 +360,8 @@ export const Networks: React.FC = () => {
                 subnet.mode === 'p2p'
                   ? t.networks.results.rangeP2p
                   : subnet.mode === 'host'
-                  ? t.networks.results.rangeHost
-                  : undefined
+                    ? t.networks.results.rangeHost
+                    : undefined
               }
               badge={
                 subnet.mode === 'p2p' ? (
@@ -388,7 +387,7 @@ export const Networks: React.FC = () => {
 
       {/* Subnet Scope Verifier */}
       {subnet && (
-        <div className="flex flex-col gap-3 p-4 rounded-2xl bg-surface border border-line">
+        <div className="flex flex-col gap-2.5 p-3 sm:p-4 rounded-2xl bg-surface border border-line min-w-0 max-w-full overflow-hidden">
           <div className="flex items-center gap-2">
             <NetIcon className="w-4 h-4 text-accent" />
             <div>

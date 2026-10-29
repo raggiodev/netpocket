@@ -95,7 +95,7 @@ export const EventIds: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 min-w-0 max-w-full">
       {/* Search Input */}
       <SearchBar
         value={search}
@@ -125,7 +125,7 @@ export const EventIds: React.FC = () => {
       {filteredEvents.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           {filteredEvents.map((evt) => {
             const isExpanded = expandedEvents.has(evt.id);
             const isFav = favorites.has(evt.id.toString());
@@ -133,9 +133,8 @@ export const EventIds: React.FC = () => {
             return (
               <div
                 key={evt.id}
-                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface ${
-                  isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
-                }`}
+                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface ${isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
+                  }`}
               >
                 {/* Header */}
                 <div
@@ -148,24 +147,22 @@ export const EventIds: React.FC = () => {
                       toggleExpand(evt.id);
                     }
                   }}
-                  className="flex items-center justify-between p-3.5 sm:p-4 cursor-pointer select-none active:bg-elevated/40 transition-colors"
+                  className="flex items-center justify-between p-3 gap-2 min-w-0 cursor-pointer select-none active:bg-elevated/40 transition-colors"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
                     <button
                       type="button"
                       onClick={(e) => handleToggleFavorite(e, evt.id)}
                       title={isFav ? t.common.removeFavorite : t.common.addFavorite}
                       aria-label={isFav ? t.common.removeFavorite : t.common.addFavorite}
-                      className={`p-1.5 rounded-lg transition-colors ${
-                        isFav
-                          ? 'text-warn bg-warn/15'
-                          : 'text-muted hover:text-fg hover:bg-elevated'
-                      }`}
+                      className={`p-1.5 rounded-lg transition-colors shrink-0 ${isFav
+                        ? 'text-warn bg-warn/15'
+                        : 'text-muted hover:text-fg hover:bg-elevated'
+                        }`}
                     >
                       <Star
-                        className={`w-4 h-4 ${
-                          isFav ? 'fill-warn stroke-warn' : 'stroke-current'
-                        }`}
+                        className={`w-4 h-4 ${isFav ? 'fill-warn stroke-warn' : 'stroke-current'
+                          }`}
                       />
                     </button>
 
@@ -177,12 +174,12 @@ export const EventIds: React.FC = () => {
                         haptic(35);
                         writeClipboard(evt.id.toString());
                       }}
-                      className="font-mono text-base sm:text-lg font-bold text-fg tracking-tight hover:text-accent transition-colors"
+                      className="font-mono text-sm sm:text-base font-bold text-fg tracking-tight hover:text-accent transition-colors shrink-0"
                     >
                       {evt.id}
                     </button>
 
-                    <Badge variant="neutral" size="sm">
+                    <Badge variant="neutral" size="sm" className="shrink-0">
                       {evt.channel}
                     </Badge>
 
@@ -191,12 +188,12 @@ export const EventIds: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Badge variant={evt.severity}>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <Badge variant={evt.severity} size="sm">
                       {t.guard.events.severity[evt.severity]}
                     </Badge>
 
-                    <div className="text-muted p-1">
+                    <div className="text-muted p-0.5">
                       {isExpanded ? (
                         <ChevronUp className="w-4 h-4" />
                       ) : (
@@ -208,7 +205,7 @@ export const EventIds: React.FC = () => {
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="px-4 pb-4 pt-1 border-t border-line/60 flex flex-col gap-3.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
+                  <div className="px-3 pb-3 pt-1.5 border-t border-line/60 flex flex-col gap-2.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
                     {/* Summary */}
                     <p className="text-fg leading-relaxed">
                       {tr(evt.summary)}

@@ -42,13 +42,12 @@ export const CopyCard: React.FC<CopyCardProps> = ({
       type="button"
       onClick={handleCopy}
       aria-label={`${label ? label + ': ' : ''}${value} - ${t.common.tapToCopy}`}
-      className={`group relative w-full text-left p-3.5 rounded-xl border bg-surface transition-all duration-150 select-none active:scale-[0.99] cursor-pointer ${
-        copied
-          ? 'border-flash shadow-flash'
-          : 'border-line hover:border-accent/50 hover:bg-surface/80'
-      } ${className}`}
+      className={`group relative w-full min-w-0 max-w-full overflow-hidden text-left p-3 rounded-xl border bg-surface transition-all duration-150 select-none active:scale-[0.99] cursor-pointer ${copied
+        ? 'border-flash shadow-flash'
+        : 'border-line hover:border-accent/50 hover:bg-surface/80'
+        } ${className}`}
     >
-      <div className="flex items-center justify-between gap-2 mb-1">
+      <div className="flex flex-wrap items-center justify-between gap-1.5 mb-1 min-w-0 max-w-full">
         <div className="flex items-center gap-1.5 min-w-0">
           {icon && <span className="text-muted shrink-0">{icon}</span>}
           {label && (
@@ -58,14 +57,13 @@ export const CopyCard: React.FC<CopyCardProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex flex-wrap items-center gap-1.5 min-w-0 max-w-full">
           {badge}
           <span
-            className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-mono font-medium transition-all duration-200 ${
-              copied
-                ? 'bg-safe-bg text-safe border border-safe-line scale-105'
-                : 'text-muted group-hover:text-accent opacity-75 group-hover:opacity-100'
-            }`}
+            className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-mono font-medium transition-all duration-200 shrink-0 ${copied
+              ? 'bg-safe-bg text-safe border border-safe-line scale-105'
+              : 'text-muted group-hover:text-accent opacity-75 group-hover:opacity-100'
+              }`}
           >
             {copied ? (
               <>
@@ -83,14 +81,14 @@ export const CopyCard: React.FC<CopyCardProps> = ({
       </div>
 
       <div
-        className={`text-sm break-all leading-relaxed text-fg select-all ${
-          mono ? 'font-mono tracking-tight font-medium' : ''
-        }`}
+        className={`text-xs sm:text-sm break-all leading-relaxed text-fg select-all min-w-0 max-w-full ${mono ? 'font-mono tracking-tight font-medium' : ''
+          }`}
       >
         {displayValue ?? value}
       </div>
 
-      {hint && <p className="mt-1 text-[11px] text-muted leading-tight">{hint}</p>}
+      {hint && <p className="mt-1 text-[11px] text-muted leading-tight break-words">{hint}</p>}
     </button>
   );
 };
+

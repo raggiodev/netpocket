@@ -34,19 +34,22 @@ export const Guard: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4 space-y-4 pb-24">
+    <div className="w-full max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5 pb-24 space-y-3 overflow-x-hidden">
       {/* Header */}
-      <div className="flex flex-col gap-1">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-fg">
+      <div className="flex flex-col gap-0.5">
+        <h1 className="text-lg font-bold tracking-tight text-fg">
           {t.guard.title}
         </h1>
-        <p className="text-xs sm:text-sm text-fg-muted">
+        <p className="text-xs sm:text-sm text-muted leading-relaxed">
           {t.guard.subtitle}
         </p>
       </div>
 
       {/* Sub-tool Selector */}
-      <div className="sticky top-[53px] z-20 bg-bg/90 backdrop-blur-md py-1.5 -mx-1 px-1">
+      <div
+        style={{ top: 'var(--topbar-h, 52px)' }}
+        className="sticky z-20 bg-bg/95 backdrop-blur-md py-1.5 -mx-3.5 px-3.5 sm:-mx-4 sm:px-4"
+      >
         <SegmentedControl
           options={options}
           value={subtool}

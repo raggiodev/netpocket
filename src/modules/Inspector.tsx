@@ -115,25 +115,25 @@ export const Inspector: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 max-w-4xl mx-auto pb-24 pt-2">
+    <div className="flex flex-col gap-3.5 w-full max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5 pb-24 overflow-x-hidden">
       {/* Module Header */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold text-fg flex items-center gap-2">
+        <h1 className="text-lg font-bold text-fg flex items-center gap-2">
           <span>{t.inspector.title}</span>
         </h1>
-        <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted mt-0.5 leading-relaxed">
           {t.inspector.subtitle}
         </p>
       </div>
 
       {/* Smart Format Detection Banner */}
       {detections.length > 0 && (
-        <div className="flex flex-col gap-2 p-3 sm:p-4 rounded-2xl bg-accent/10 border border-accent/30 animate-fade-in">
+        <div className="flex flex-col gap-2 p-3 rounded-2xl bg-accent/10 border border-accent/30 animate-fade-in min-w-0 max-w-full overflow-hidden">
           <div className="flex items-center gap-1.5 text-xs font-semibold text-accent uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
             <span>{t.inspector.detectedTitle}</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 min-w-0 max-w-full">
             {detections.map((d, i) => {
               let label = '';
               if (d.kind === 'base64') label = t.inspector.detect.base64;
@@ -163,10 +163,10 @@ export const Inspector: React.FC = () => {
                       showToast(t.common.copied, 'success');
                     }
                   }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-surface border border-accent/50 text-fg text-xs font-medium hover:border-accent hover:bg-elevated transition-all active:scale-95 text-left shadow-sm"
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-accent/10 border border-accent/40 text-accent text-xs font-medium hover:bg-accent/20 transition-all active:scale-95 text-left shadow-sm min-w-0 max-w-full"
                 >
                   <Flame className="w-3.5 h-3.5 text-accent shrink-0" />
-                  <span>{label}</span>
+                  <span className="break-words">{label}</span>
                 </button>
               );
             })}
@@ -180,64 +180,64 @@ export const Inspector: React.FC = () => {
         value={input}
         onChange={setInput}
         placeholder={t.inspector.placeholder}
-        rows={4}
+        rows={3}
         maxLength={MAX_PAYLOAD_BYTES}
       />
 
       {/* Input limit warning badge */}
       {isPayloadTooLarge && (
-        <div className="flex items-center gap-2 p-3 rounded-xl bg-warn-bg border border-warn-line text-warn text-xs font-medium animate-pop-in">
+        <div className="flex items-center gap-2 p-2.5 rounded-xl bg-warn-bg border border-warn-line text-warn text-xs font-medium animate-pop-in">
           <AlertTriangle className="w-4 h-4 shrink-0" />
           <span>{t.inspector.limitExceeded}</span>
         </div>
       )}
 
       {/* IOC Defang / Refang Action Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 rounded-2xl bg-surface border border-line">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-elevated text-muted">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 p-3 rounded-2xl bg-surface border border-line min-w-0 max-w-full">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="p-1.5 rounded-lg bg-elevated text-muted shrink-0">
             <ShieldAlert className="w-4 h-4 text-accent" />
           </div>
-          <div>
-            <span className="text-xs font-semibold text-fg block">{t.inspector.iocBar}</span>
-            <span className="text-[11px] text-muted">
+          <div className="min-w-0">
+            <span className="text-xs font-semibold text-fg block truncate">{t.inspector.iocBar}</span>
+            <span className="text-[11px] text-muted block truncate">
               {`http:// -> hxxp[://], . -> [.]`}
             </span>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center shrink-0">
           <button
             type="button"
             onClick={handleDefang}
             disabled={!input.trim()}
-            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-safe-bg text-safe border border-safe-line hover:brightness-110 active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-safe-bg text-safe border border-safe-line hover:brightness-110 active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
           >
-            <ShieldCheck className="w-4 h-4" />
-            <span>{t.inspector.defang}</span>
+            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{t.inspector.defang}</span>
           </button>
 
           <button
             type="button"
             onClick={handleRefang}
             disabled={!input.trim()}
-            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-warn-bg text-warn border border-warn-line hover:brightness-110 active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
+            className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-warn-bg text-warn border border-warn-line hover:brightness-110 active:scale-95 transition-all disabled:opacity-40 disabled:pointer-events-none"
           >
-            <ShieldAlert className="w-4 h-4" />
-            <span>{t.inspector.refang}</span>
+            <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{t.inspector.refang}</span>
           </button>
         </div>
       </div>
 
       {/* Real-Time Encoding / Decoding Grid */}
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-2">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
-            <Code2 className="w-4 h-4 text-accent" />
+      <div className="flex flex-col gap-2.5 min-w-0 max-w-full">
+        <div className="flex flex-wrap items-center justify-between gap-2 min-w-0">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
+            <Code2 className="w-4 h-4 text-accent shrink-0" />
             <span>{t.inspector.codec}</span>
           </h2>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {codecMode === 'encode' && (
               <button
                 type="button"
@@ -248,7 +248,7 @@ export const Inspector: React.FC = () => {
               </button>
             )}
 
-            <div className="w-40">
+            <div className="w-36 sm:w-40">
               <SegmentedControl
                 size="sm"
                 options={[
@@ -262,7 +262,7 @@ export const Inspector: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 min-w-0 max-w-full">
           {/* Base64 */}
           {codecsResults.base64.ok ? (
             <CopyCard
@@ -271,9 +271,9 @@ export const Inspector: React.FC = () => {
               icon={<FileCode className="w-3.5 h-3.5 text-accent" />}
             />
           ) : (
-            <div className="p-3.5 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex items-center justify-between">
+            <div className="p-3 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex flex-wrap items-center justify-between gap-1.5 min-w-0 max-w-full">
               <span className="font-semibold uppercase text-[11px]">{t.inspector.codecs.base64}</span>
-              <span className="text-danger text-[11px]">
+              <span className="text-danger text-[11px] break-words">
                 {renderErrorMessage(codecsResults.base64.error)}
               </span>
             </div>
@@ -287,9 +287,9 @@ export const Inspector: React.FC = () => {
               icon={<Link className="w-3.5 h-3.5 text-accent" />}
             />
           ) : (
-            <div className="p-3.5 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex items-center justify-between">
+            <div className="p-3 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex flex-wrap items-center justify-between gap-1.5 min-w-0 max-w-full">
               <span className="font-semibold uppercase text-[11px]">{t.inspector.codecs.url}</span>
-              <span className="text-danger text-[11px]">
+              <span className="text-danger text-[11px] break-words">
                 {renderErrorMessage(codecsResults.url.error)}
               </span>
             </div>
@@ -303,9 +303,9 @@ export const Inspector: React.FC = () => {
               icon={<Hash className="w-3.5 h-3.5 text-accent" />}
             />
           ) : (
-            <div className="p-3.5 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex items-center justify-between">
+            <div className="p-3 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex flex-wrap items-center justify-between gap-1.5 min-w-0 max-w-full">
               <span className="font-semibold uppercase text-[11px]">{t.inspector.codecs.hex}</span>
-              <span className="text-danger text-[11px]">
+              <span className="text-danger text-[11px] break-words">
                 {renderErrorMessage(codecsResults.hex.error)}
               </span>
             </div>
@@ -319,9 +319,9 @@ export const Inspector: React.FC = () => {
               icon={<BinaryIcon className="w-3.5 h-3.5 text-accent" />}
             />
           ) : (
-            <div className="p-3.5 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex items-center justify-between">
+            <div className="p-3 rounded-xl border border-line bg-surface/50 text-xs font-mono text-muted flex flex-wrap items-center justify-between gap-1.5 min-w-0 max-w-full">
               <span className="font-semibold uppercase text-[11px]">{t.inspector.codecs.binary}</span>
-              <span className="text-danger text-[11px]">
+              <span className="text-danger text-[11px] break-words">
                 {renderErrorMessage(codecsResults.binary.error)}
               </span>
             </div>
@@ -330,10 +330,10 @@ export const Inspector: React.FC = () => {
       </div>
 
       {/* Local Cryptographic Hash Generator */}
-      <div className="flex flex-col gap-3 mt-1">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
-            <Hash className="w-4 h-4 text-accent" />
+      <div className="flex flex-col gap-2.5 min-w-0 max-w-full">
+        <div className="flex flex-wrap items-center justify-between gap-1.5 min-w-0">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
+            <Hash className="w-4 h-4 text-accent shrink-0" />
             <span>{t.inspector.hashes}</span>
           </h2>
           <span className="text-[11px] text-muted">
@@ -341,7 +341,7 @@ export const Inspector: React.FC = () => {
           </span>
         </div>
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2 min-w-0 max-w-full">
           {/* MD5 */}
           <CopyCard
             label="MD5 (128-bit)"

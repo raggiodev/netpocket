@@ -2,64 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+html.dark,
+[data-theme="dark"] {
   /* Default: Tactical Dark Mode */
-  --c-bg: 11 15 25; /* #0B0F19 */
-  --c-surface: 17 24 39; /* #111827 */
-  --c-elevated: 31 41 55; /* #1F2937 */
-  --c-line: 31 41 55; /* #1F2937 */
-  --c-fg: 249 250 251; /* #F9FAFB */
-  --c-muted: 156 163 175; /* #9CA3AF */
-  --c-accent: 56 189 248; /* #38BDF8 */
-  --c-accent-soft: 14 116 144; /* #0E7490 */
+  --c-bg: 11 15 25;
+  /* #0B0F19 */
+  --c-surface: 17 24 39;
+  /* #111827 */
+  --c-elevated: 31 41 55;
+  /* #1F2937 */
+  --c-line: 31 41 55;
+  /* #1F2937 */
+  --c-fg: 249 250 251;
+  /* #F9FAFB */
+  --c-muted: 156 163 175;
+  /* #9CA3AF */
+  --c-accent: 56 189 248;
+  /* #38BDF8 */
+  --c-accent-soft: 14 116 144;
+  /* #0E7490 */
 
   /* Semantic Security Badges - Dark Mode */
-  --c-danger: 239 68 68; /* #EF4444 */
-  --c-danger-bg: 69 10 10; /* #450A0A */
-  --c-danger-line: 220 38 38; /* #DC2626 */
+  --c-danger: 239 68 68;
+  /* #EF4444 */
+  --c-danger-bg: 69 10 10;
+  /* #450A0A */
+  --c-danger-line: 220 38 38;
+  /* #DC2626 */
 
-  --c-warn: 245 158 11; /* #F59E0B */
-  --c-warn-bg: 69 26 3; /* #451A03 */
-  --c-warn-line: 217 119 6; /* #D97706 */
+  --c-warn: 245 158 11;
+  /* #F59E0B */
+  --c-warn-bg: 69 26 3;
+  /* #451A03 */
+  --c-warn-line: 217 119 6;
+  /* #D97706 */
 
-  --c-safe: 16 185 129; /* #10B981 */
-  --c-safe-bg: 6 78 59; /* #064E3B */
-  --c-safe-line: 5 150 105; /* #059669 */
+  --c-safe: 16 185 129;
+  /* #10B981 */
+  --c-safe-bg: 6 78 59;
+  /* #064E3B */
+  --c-safe-line: 5 150 105;
+  /* #059669 */
 
-  --c-netbit: 56 189 248; /* #38BDF8 */
-  --c-hostbit: 16 185 129; /* #10B981 */
+  --c-netbit: 56 189 248;
+  /* #38BDF8 */
+  --c-hostbit: 16 185 129;
+  /* #10B981 */
 }
 
 /* Field Light Mode (High Contrast) */
 html.light,
-.light {
-  --c-bg: 248 250 252; /* #F8FAFC */
-  --c-surface: 255 255 255; /* #FFFFFF */
-  --c-elevated: 241 245 249; /* #F1F5F9 */
-  --c-line: 226 232 240; /* #E2E8F0 */
-  --c-fg: 15 23 42; /* #0F172A */
-  --c-muted: 71 85 105; /* #475569 */
-  --c-accent: 2 132 199; /* #0284C7 */
-  --c-accent-soft: 186 230 253; /* #BAE6FD */
+.light,
+[data-theme="light"] {
+  --c-bg: 248 250 252;
+  /* #F8FAFC */
+  --c-surface: 255 255 255;
+  /* #FFFFFF */
+  --c-elevated: 241 245 249;
+  /* #F1F5F9 */
+  --c-line: 203 213 225;
+  /* #CBD5E1 */
+  --c-fg: 15 23 42;
+  /* #0F172A */
+  --c-muted: 71 85 105;
+  /* #475569 */
+  --c-accent: 2 132 199;
+  /* #0284C7 */
+  --c-accent-soft: 186 230 253;
+  /* #BAE6FD */
 
   /* Semantic Security Badges - High-Contrast Darkened for Light Mode */
-  --c-danger: 220 38 38; /* #DC2626 */
-  --c-danger-bg: 254 226 226; /* #FEE2E2 */
-  --c-danger-line: 220 38 38; /* #DC2626 */
+  --c-danger: 220 38 38;
+  /* #DC2626 */
+  --c-danger-bg: 254 226 226;
+  /* #FEE2E2 */
+  --c-danger-line: 220 38 38;
+  /* #DC2626 */
 
-  --c-warn: 180 83 9; /* #B45309 */
-  --c-warn-bg: 254 243 199; /* #FEF3C7 */
-  --c-warn-line: 217 119 6; /* #D97706 */
+  --c-warn: 180 83 9;
+  /* #B45309 */
+  --c-warn-bg: 254 243 199;
+  /* #FEF3C7 */
+  --c-warn-line: 217 119 6;
+  /* #D97706 */
 
-  --c-safe: 4 120 87; /* #047857 */
-  --c-safe-bg: 209 250 229; /* #D1FAE5 */
-  --c-safe-line: 5 150 105; /* #059669 */
+  --c-safe: 4 120 87;
+  /* #047857 */
+  --c-safe-bg: 209 250 229;
+  /* #D1FAE5 */
+  --c-safe-line: 5 150 105;
+  /* #059669 */
 
-  --c-netbit: 2 132 199; /* #0284C7 */
-  --c-hostbit: 4 120 87; /* #047857 */
+  --c-netbit: 2 132 199;
+  /* #0284C7 */
+  --c-hostbit: 4 120 87;
+  /* #047857 */
 }
 
-/* Base ergonomics for mobile touch devices */
+/* Proportional mobile scaling for 360px-412px phone viewports */
+@media (max-width: 640px) {
+  html {
+    font-size: 14.5px;
+  }
+}
+
+/* Base ergonomics & strict horizontal overflow protection */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 html,
 body {
   height: 100%;
@@ -73,10 +129,38 @@ body {
   overscroll-behavior-y: none;
 }
 
+html.dark body,
+[data-theme="dark"] body {
+  background-color: rgb(var(--c-bg));
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(56, 189, 248, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 85% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
+html.light body,
+[data-theme="light"] body {
+  background-color: rgb(var(--c-bg));
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(2, 132, 199, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 100%, rgba(4, 120, 87, 0.04) 0%, transparent 45%);
+  background-attachment: fixed;
+}
+
 #root {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* Utility to hide scrollbars on horizontal chip strips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Custom scrollbars */

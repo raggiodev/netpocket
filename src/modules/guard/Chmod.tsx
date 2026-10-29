@@ -106,7 +106,7 @@ export const Chmod: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-3.5 min-w-0 max-w-full">
       {/* Reverse Input bar */}
       <TextField
         label={t.guard.chmod.inputLabel}
@@ -137,7 +137,7 @@ export const Chmod: React.FC = () => {
       </div>
 
       {/* 3x3 Permission Matrix + Special Bits */}
-      <div className="flex flex-col gap-4 p-4 rounded-2xl bg-surface border border-line shadow-card">
+      <div className="flex flex-col gap-3.5 p-3 sm:p-4 rounded-2xl bg-surface border border-line shadow-card min-w-0 max-w-full overflow-hidden">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold uppercase tracking-wider text-muted flex items-center gap-1.5">
             <Layers className="w-3.5 h-3.5 text-accent" />
@@ -170,11 +170,10 @@ export const Chmod: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleBit(bit)}
-                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${
-                        state.bits[bit]
-                          ? 'bg-accent text-bg shadow-sm'
-                          : 'bg-elevated text-muted hover:text-fg'
-                      }`}
+                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${state.bits[bit]
+                        ? 'bg-accent text-bg shadow-sm'
+                        : 'bg-elevated text-muted hover:text-fg'
+                        }`}
                     >
                       {state.bits[bit] ? (bit === 0 ? 'r' : bit === 1 ? 'w' : 'x') : '-'}
                     </button>
@@ -192,11 +191,10 @@ export const Chmod: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleBit(bit)}
-                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${
-                        state.bits[bit]
-                          ? 'bg-accent text-bg shadow-sm'
-                          : 'bg-elevated text-muted hover:text-fg'
-                      }`}
+                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${state.bits[bit]
+                        ? 'bg-accent text-bg shadow-sm'
+                        : 'bg-elevated text-muted hover:text-fg'
+                        }`}
                     >
                       {state.bits[bit] ? (bit === 3 ? 'r' : bit === 4 ? 'w' : 'x') : '-'}
                     </button>
@@ -214,13 +212,12 @@ export const Chmod: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => toggleBit(bit)}
-                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${
-                        state.bits[bit]
-                          ? bit === 7 && !state.sticky
-                            ? 'bg-danger text-white shadow-sm' // Highlight world-writable
-                            : 'bg-accent text-bg shadow-sm'
-                          : 'bg-elevated text-muted hover:text-fg'
-                      }`}
+                      className={`w-9 h-9 rounded-xl font-bold transition-all active:scale-90 ${state.bits[bit]
+                        ? bit === 7 && !state.sticky
+                          ? 'bg-danger-bg text-danger border border-danger-line shadow-sm' // Highlight world-writable
+                          : 'bg-accent text-bg shadow-sm'
+                        : 'bg-elevated text-muted hover:text-fg'
+                        }`}
                     >
                       {state.bits[bit] ? (bit === 6 ? 'r' : bit === 7 ? 'w' : 'x') : '-'}
                     </button>
@@ -241,11 +238,10 @@ export const Chmod: React.FC = () => {
             <button
               type="button"
               onClick={() => toggleSpecial('suid')}
-              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${
-                state.suid
-                  ? 'bg-danger-bg text-danger border-danger-line shadow-sm'
-                  : 'bg-elevated text-muted border-line hover:text-fg'
-              }`}
+              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${state.suid
+                ? 'bg-danger-bg text-danger border-danger-line shadow-sm'
+                : 'bg-elevated text-muted border-line hover:text-fg'
+                }`}
             >
               <div>
                 <span className="font-mono font-bold text-xs block">
@@ -262,11 +258,10 @@ export const Chmod: React.FC = () => {
             <button
               type="button"
               onClick={() => toggleSpecial('sgid')}
-              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${
-                state.sgid
-                  ? 'bg-warn-bg text-warn border-warn-line shadow-sm'
-                  : 'bg-elevated text-muted border-line hover:text-fg'
-              }`}
+              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${state.sgid
+                ? 'bg-warn-bg text-warn border-warn-line shadow-sm'
+                : 'bg-elevated text-muted border-line hover:text-fg'
+                }`}
             >
               <div>
                 <span className="font-mono font-bold text-xs block">
@@ -283,11 +278,10 @@ export const Chmod: React.FC = () => {
             <button
               type="button"
               onClick={() => toggleSpecial('sticky')}
-              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${
-                state.sticky
-                  ? 'bg-safe-bg text-safe border-safe-line shadow-sm'
-                  : 'bg-elevated text-muted border-line hover:text-fg'
-              }`}
+              className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all active:scale-95 ${state.sticky
+                ? 'bg-safe-bg text-safe border-safe-line shadow-sm'
+                : 'bg-elevated text-muted border-line hover:text-fg'
+                }`}
             >
               <div>
                 <span className="font-mono font-bold text-xs block">
@@ -342,17 +336,16 @@ export const Chmod: React.FC = () => {
             return (
               <div
                 key={i}
-                className={`p-3.5 rounded-2xl border flex flex-col gap-1.5 bg-surface ${
-                  f.level === 'critical'
-                    ? 'border-danger-line bg-danger-bg/20'
-                    : f.level === 'warning'
+                className={`p-3 rounded-2xl border flex flex-col gap-1.5 bg-surface ${f.level === 'critical'
+                  ? 'border-danger-line bg-danger-bg/20'
+                  : f.level === 'warning'
                     ? 'border-warn-line bg-warn-bg/20'
                     : f.level === 'safe'
-                    ? 'border-safe-line bg-safe-bg/20'
-                    : 'border-line'
-                }`}
+                      ? 'border-safe-line bg-safe-bg/20'
+                      : 'border-line'
+                  }`}
               >
-                <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <span className="font-semibold text-xs sm:text-sm text-fg">
                     {info.title}
                   </span>

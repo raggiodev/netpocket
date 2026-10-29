@@ -23,7 +23,7 @@ function renderHtmlToPng(htmlContent, outputPath, width, height) {
     child.on('close', (code) => {
       try {
         if (existsSync(tempHtmlPath)) unlinkSync(tempHtmlPath);
-      } catch (err) {}
+      } catch (err) { }
       if (code === 0) {
         resolvePromise();
       } else {
@@ -33,7 +33,7 @@ function renderHtmlToPng(htmlContent, outputPath, width, height) {
     child.on('error', (err) => {
       try {
         if (existsSync(tempHtmlPath)) unlinkSync(tempHtmlPath);
-      } catch (e) {}
+      } catch (e) { }
       reject(err);
     });
   });
@@ -108,7 +108,7 @@ function getRoundIconHtml(size) {
   body {
     width:${size}px;
     height:${size}px;
-    background:transparent;
+    background:#0B0F19;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -147,7 +147,7 @@ function getForegroundIconHtml(size) {
   body {
     width:${size}px;
     height:${size}px;
-    background:transparent;
+    background: radial-gradient(circle at 50% 35%, #172554 0%, #0B0F19 75%);
     display:flex;
     align-items:center;
     justify-content:center;

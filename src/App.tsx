@@ -16,12 +16,12 @@ const AppContent: React.FC = () => {
   const [activeTab, setActiveTab] = useLocalStorage<TabId>('app:active_tab', 'inspector', isTabId);
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg text-fg select-text">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-bg text-fg select-text">
       {/* Top Bar with brand, offline badge modal trigger, language selector and theme toggle */}
       <TopBar />
 
       {/* Main Content Area: all 4 modules remain mounted to preserve volatile state */}
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full min-w-0 max-w-full overflow-x-hidden">
         <div className={activeTab === 'inspector' ? 'block' : 'hidden'} role="tabpanel" id="tab-inspector">
           <Inspector />
         </div>

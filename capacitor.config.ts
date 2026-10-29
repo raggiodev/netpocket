@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'dev.raggio.netpocket',
-  appName: 'NetPocket',
+  appName: 'NetPocket Cybersecurity',
   webDir: 'dist',
   backgroundColor: '#0B0F19',
   loggingBehavior: 'none',
@@ -14,6 +14,14 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'https',
     cleartext: false,
+  },
+  plugins: {
+    SystemBars: {
+      // Light status/navigation bar icons on the #0B0F19 tactical background.
+      style: 'DARK',
+      // Native padding keeps the WebView strictly between the system bars.
+      insetsHandling: 'css',
+    },
   },
 };
 

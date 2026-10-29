@@ -63,7 +63,7 @@ export const HttpCodes: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 min-w-0 max-w-full">
       {/* Search Bar */}
       <SearchBar
         value={search}
@@ -92,16 +92,15 @@ export const HttpCodes: React.FC = () => {
       {filteredCodes.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           {filteredCodes.map((item) => {
             const isExpanded = expandedCodes.has(item.code);
 
             return (
               <div
                 key={item.code}
-                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface ${
-                  isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
-                }`}
+                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface ${isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
+                  }`}
               >
                 {/* Header */}
                 <div
@@ -114,9 +113,9 @@ export const HttpCodes: React.FC = () => {
                       toggleExpand(item.code);
                     }
                   }}
-                  className="flex items-center justify-between p-3.5 sm:p-4 cursor-pointer select-none active:bg-elevated/40 transition-colors"
+                  className="flex items-center justify-between p-3 gap-2 min-w-0 cursor-pointer select-none active:bg-elevated/40 transition-colors"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
                     <button
                       type="button"
                       title={t.common.tapToCopy}
@@ -125,12 +124,12 @@ export const HttpCodes: React.FC = () => {
                         haptic(35);
                         writeClipboard(item.code);
                       }}
-                      className="font-mono text-base sm:text-lg font-bold text-fg tracking-tight hover:text-accent transition-colors"
+                      className="font-mono text-sm sm:text-base font-bold text-fg tracking-tight hover:text-accent transition-colors shrink-0"
                     >
                       {item.code}
                     </button>
 
-                    <Badge variant="neutral" size="sm">
+                    <Badge variant="neutral" size="sm" className="shrink-0">
                       {item.family}
                     </Badge>
 
@@ -139,12 +138,12 @@ export const HttpCodes: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
-                    <Badge variant={item.risk}>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <Badge variant={item.risk} size="sm">
                       {t.risk[item.risk]}
                     </Badge>
 
-                    <div className="text-muted p-1">
+                    <div className="text-muted p-0.5">
                       {isExpanded ? (
                         <ChevronUp className="w-4 h-4" />
                       ) : (
@@ -156,7 +155,7 @@ export const HttpCodes: React.FC = () => {
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="px-4 pb-4 pt-1 border-t border-line/60 flex flex-col gap-3.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
+                  <div className="px-3 pb-3 pt-1.5 border-t border-line/60 flex flex-col gap-2.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
                     {/* Standard Meaning */}
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-muted uppercase tracking-wider">

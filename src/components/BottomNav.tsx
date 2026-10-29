@@ -16,22 +16,22 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
     {
       id: 'inspector',
       label: t.nav.inspector,
-      icon: <Terminal className="w-5 h-5 stroke-[2]" />,
+      icon: <Terminal className="w-4 h-4 stroke-[2.2]" />,
     },
     {
       id: 'networks',
       label: t.nav.networks,
-      icon: <Network className="w-5 h-5 stroke-[2]" />,
+      icon: <Network className="w-4 h-4 stroke-[2.2]" />,
     },
     {
       id: 'ports',
       label: t.nav.ports,
-      icon: <ShieldAlert className="w-5 h-5 stroke-[2]" />,
+      icon: <ShieldAlert className="w-4 h-4 stroke-[2.2]" />,
     },
     {
       id: 'guard',
       label: t.nav.guard,
-      icon: <ShieldCheck className="w-5 h-5 stroke-[2]" />,
+      icon: <ShieldCheck className="w-4 h-4 stroke-[2.2]" />,
     },
   ];
 
@@ -45,9 +45,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
   return (
     <nav
       aria-label={t.nav.label}
-      className="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-line px-2 py-1.5 transition-colors"
+      className="fixed bottom-0 left-0 right-0 z-40 w-full max-w-full bg-surface/95 backdrop-blur-md border-t border-line px-2 pt-1 pb-[max(0.35rem,env(safe-area-inset-bottom,0px))] transition-colors"
     >
-      <div className="max-w-md mx-auto grid grid-cols-4 gap-1">
+      <div className="max-w-md mx-auto grid grid-cols-4 gap-1 h-14 items-center">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTab;
           return (
@@ -55,20 +55,18 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
               key={tab.id}
               type="button"
               onClick={() => handleSelect(tab.id)}
-              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all duration-150 active:scale-95 select-none ${
-                isActive
-                  ? 'text-accent font-semibold'
-                  : 'text-muted hover:text-fg'
-              }`}
+              className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 select-none min-w-0 ${isActive
+                ? 'text-accent font-semibold'
+                : 'text-muted hover:text-fg'
+                }`}
             >
               <div
-                className={`p-1 rounded-lg transition-colors ${
-                  isActive ? 'bg-accent/15' : 'bg-transparent'
-                }`}
+                className={`p-1 rounded-lg transition-colors ${isActive ? 'bg-accent/15' : 'bg-transparent'
+                  }`}
               >
                 {tab.icon}
               </div>
-              <span className="text-[11px] mt-0.5 tracking-tight truncate max-w-full">
+              <span className="text-[11px] leading-tight mt-0.5 tracking-tight truncate max-w-full">
                 {tab.label}
               </span>
               {isActive && (
@@ -81,3 +79,4 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) 
     </nav>
   );
 };
+

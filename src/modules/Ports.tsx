@@ -96,13 +96,13 @@ export const Ports: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 max-w-4xl mx-auto pb-24 pt-2">
+    <div className="flex flex-col gap-3 w-full max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5 pb-24 overflow-x-hidden">
       {/* Header */}
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold text-fg flex items-center gap-2">
+        <h1 className="text-lg font-bold text-fg flex items-center gap-2">
           <span>{t.ports.title}</span>
         </h1>
-        <p className="text-xs sm:text-sm text-muted mt-1 leading-relaxed">
+        <p className="text-xs sm:text-sm text-muted mt-0.5 leading-relaxed">
           {t.ports.subtitle}
         </p>
       </div>
@@ -141,7 +141,7 @@ export const Ports: React.FC = () => {
       {filteredPorts.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5 min-w-0 max-w-full">
           {filteredPorts.map((p) => {
             const isExpanded = expandedPorts.has(p.id);
             const isFav = favorites.has(p.id);
@@ -149,9 +149,8 @@ export const Ports: React.FC = () => {
             return (
               <div
                 key={p.id}
-                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface ${
-                  isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
-                }`}
+                className={`rounded-2xl border transition-all duration-150 overflow-hidden bg-surface min-w-0 max-w-full ${isExpanded ? 'border-accent/40 shadow-sm' : 'border-line hover:border-line/80'
+                  }`}
               >
                 {/* Accordion Header */}
                 <div
@@ -164,25 +163,23 @@ export const Ports: React.FC = () => {
                       toggleExpand(p.id);
                     }
                   }}
-                  className="flex items-center justify-between p-3.5 sm:p-4 cursor-pointer select-none active:bg-elevated/40 transition-colors"
+                  className="flex items-center justify-between gap-2 p-3 cursor-pointer select-none active:bg-elevated/40 transition-colors min-w-0"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex items-center gap-2 min-w-0">
                     {/* Star Favorite Button */}
                     <button
                       type="button"
                       onClick={(e) => handleToggleFavorite(e, p.id)}
                       title={isFav ? t.common.removeFavorite : t.common.addFavorite}
                       aria-label={isFav ? t.common.removeFavorite : t.common.addFavorite}
-                      className={`p-1.5 rounded-lg transition-colors ${
-                        isFav
-                          ? 'text-warn bg-warn/15'
-                          : 'text-muted hover:text-fg hover:bg-elevated'
-                      }`}
+                      className={`p-1 rounded-lg transition-colors shrink-0 ${isFav
+                        ? 'text-warn bg-warn/15'
+                        : 'text-muted hover:text-fg hover:bg-elevated'
+                        }`}
                     >
                       <Star
-                        className={`w-4 h-4 ${
-                          isFav ? 'fill-warn stroke-warn' : 'stroke-current'
-                        }`}
+                        className={`w-4 h-4 ${isFav ? 'fill-warn stroke-warn' : 'stroke-current'
+                          }`}
                       />
                     </button>
 
@@ -195,29 +192,29 @@ export const Ports: React.FC = () => {
                         haptic(35);
                         writeClipboard(p.port);
                       }}
-                      className="font-mono text-base sm:text-lg font-bold text-fg tracking-tight hover:text-accent transition-colors"
+                      className="font-mono text-sm sm:text-base font-bold text-fg tracking-tight hover:text-accent transition-colors shrink-0"
                     >
                       {p.port}
                     </button>
 
                     {/* Protocol Badge */}
-                    <Badge variant="neutral" size="sm">
+                    <Badge variant="neutral" size="sm" className="shrink-0">
                       {p.protocol}
                     </Badge>
 
                     {/* Service Name */}
-                    <span className="text-xs sm:text-sm font-semibold text-fg truncate">
+                    <span className="text-xs sm:text-sm font-semibold text-fg truncate min-w-0">
                       {p.service}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex items-center gap-1.5 shrink-0">
                     {/* Risk Badge */}
-                    <Badge variant={p.risk}>
+                    <Badge variant={p.risk} size="sm">
                       {t.risk[p.risk]}
                     </Badge>
 
-                    <div className="text-muted p-1">
+                    <div className="text-muted p-0.5">
                       {isExpanded ? (
                         <ChevronUp className="w-4 h-4" />
                       ) : (
@@ -229,7 +226,7 @@ export const Ports: React.FC = () => {
 
                 {/* Accordion Body (3 Structured Tactical Sections) */}
                 {isExpanded && (
-                  <div className="px-4 pb-4 pt-1 border-t border-line/60 flex flex-col gap-3.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
+                  <div className="px-3 pb-3 pt-1.5 border-t border-line/60 flex flex-col gap-2.5 bg-elevated/20 text-xs sm:text-sm animate-fade-in">
                     {/* 1. Service Purpose */}
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-1.5 text-xs font-semibold text-muted uppercase tracking-wider">

@@ -1,7 +1,8 @@
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:http';
-import { readFileSync, existsSync, statSync, writeFileSync } from 'node:fs';
+import { readFileSync, existsSync, statSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { resolve, extname, join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const PORT = 51739;
@@ -51,10 +52,11 @@ function startServer() {
 }
 
 // 2. Launch Chrome Headless with Remote Debugging
-function launchChrome(debugPort) {
+function launchChrome(debugPort, userDataDir) {
   const args = [
     '--headless=new',
     `--remote-debugging-port=${debugPort}`,
+    `--user-data-dir=${userDataDir}`,
     '--disable-gpu',
     '--hide-scrollbars',
     '--no-first-run',
@@ -65,9 +67,22 @@ function launchChrome(debugPort) {
 }
 
 async function createCdpClient(debugPort) {
-  await new Promise((r) => setTimeout(r, 1200));
-  const res = await fetch(`http://127.0.0.1:${debugPort}/json/list`);
-  const list = await res.json();
+  let list = null;
+  for (let attempt = 0; attempt < 15; attempt++) {
+    await new Promise((r) => setTimeout(r, 600));
+    try {
+      const res = await fetch(`http://127.0.0.1:${debugPort}/json/list`);
+      if (res.ok) {
+        list = await res.json();
+        if (Array.isArray(list) && list.length > 0) break;
+      }
+    } catch {
+      // wait for Chrome debug port
+    }
+  }
+  if (!list) {
+    throw new Error('Failed to connect to Chrome remote debugging port');
+  }
   const page = list.find((t) => t.type === 'page') || list[0];
   if (!page || !page.webSocketDebuggerUrl) {
     throw new Error('Failed to find Chrome page target');
@@ -101,7 +116,9 @@ async function createCdpClient(debugPort) {
 async function run() {
   const server = await startServer();
   const debugPort = 9555;
-  const chromeProcess = launchChrome(debugPort);
+  const userDataDir = join(tmpdir(), `netpocket-chrome-cdp-${Date.now()}`);
+  mkdirSync(userDataDir, { recursive: true });
+  const chromeProcess = launchChrome(debugPort, userDataDir);
 
   try {
     const { ws, send } = await createCdpClient(debugPort);
@@ -264,6 +281,9 @@ async function run() {
   } finally {
     chromeProcess.kill();
     server.close();
+    try {
+      rmSync(userDataDir, { recursive: true, force: true });
+    } catch { }
   }
 }
 
