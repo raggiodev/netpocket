@@ -1,4 +1,4 @@
-package dev.raggio.netpocket;
+package com.raggiodev.netpocket;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -49,3 +49,4 @@ public class MainActivity extends BridgeActivity {
         ViewCompat.requestApplyInsets(content);
     }
 }
+

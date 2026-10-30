@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "dev.raggio.netpocket"
+    namespace = "com.raggiodev.netpocket"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "dev.raggio.netpocket"
+        applicationId "com.raggiodev.netpocket"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -19,9 +19,9 @@ android {
     signingConfigs {
         release {
             storeFile file('../../keystore/netpocket-release.jks')
-            storePassword 'NetPocket2026!Secure'
-            keyAlias 'netpocket'
-            keyPassword 'NetPocket2026!Secure'
+            storePassword "NetPocket2026!Secure"
+            keyAlias "netpocket"
+            keyPassword "NetPocket2026!Secure"
         }
     }
     buildTypes {
