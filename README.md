@@ -120,4 +120,4 @@ The automated script [`scripts/harden-android.mjs`](scripts/harden-android.mjs) 
 ---
 
 ## 📄 License
-MIT License. Created for the cybersecurity and network engineering community.
+MIT License. Created for the cybersecurity and network engineering community. By Raggiodev
